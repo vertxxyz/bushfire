@@ -23,6 +23,8 @@ public class AudioSequencer : MonoBehaviour
 		{
 			GameObject g = new GameObject(gameObject.name + " " + i);
 			g.transform.SetParent(transform);
+			g.transform.localPosition = Vector3.zero;
+			g.transform.localRotation = Quaternion.identity;
 			_audioSources[i] = CopyComponent(_audioSource, g);
 		}
 
