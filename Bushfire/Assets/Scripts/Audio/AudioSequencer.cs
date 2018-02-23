@@ -1,22 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioSequencer : MonoBehaviour
 {
-	private PlayableDirector _playableDirector;
+	private AudioSource _audioSource;
+	
+	//There are an array of variables to ensure audio preloading.
+	private const int audioSourceInstances = 2;
+	private int currentPlayingInstance;
+	private AudioSource[] _audioSources;
+	
+	private double nextEventTime;
+	
 	// Use this for initialization
-	void Start ()
+	private void Start ()
 	{
-		_playableDirector = gameObject.AddComponent<PlayableDirector>();
-		_timelineAsset = ScriptableObject.CreateInstance<TimelineAsset>();
-		_audioTrack = _timelineAsset.CreateTrack<AudioTrack>(null, "Audio Track");
-		_playableDirector.playableAsset = _timelineAsset;
-		CreateSequence();
+		_audioSource = GetComponent<AudioSource>();
+		_audioSources = new AudioSource[audioSourceInstances];
+		for (int i = 0; i < audioSourceInstances; i++)
+		{
+			GameObject g = new GameObject(gameObject.name + " " + i);
+			g.transform.SetParent(transform);
+			_audioSources[i] = CopyComponent(_audioSource, g);
+		}
+
+		_audioSources[currentPlayingInstance].clip = GetNextAudioAndIncrementSequence();
+		_audioSources[currentPlayingInstance].Play();
+		nextEventTime = AudioSettings.dspTime + _audioSources[currentPlayingInstance].clip.length;
+	}
+
+	private static T CopyComponent<T>(T original, GameObject destination) where T : Component
+	{
+		Type type = original.GetType();
+		Component copy = destination.AddComponent(type);
+		System.Reflection.FieldInfo[] fields = type.GetFields();
+		foreach (System.Reflection.FieldInfo field in fields)
+		{
+			field.SetValue(copy, field.GetValue(original));
+		}
+		return copy as T;
 	}
 
 	private void Reset()
@@ -24,25 +47,39 @@ public class AudioSequencer : MonoBehaviour
 		_audioSource = GetComponent<AudioSource>();
 	}
 
-	private TimelineAsset _timelineAsset;
-	private AudioSource _audioSource;
-	private AudioTrack _audioTrack;
+	public FileProvider[] audioSequences;
+	private int currentSequenceIndex;
 
-	public FileRandomiser[] audioSequences;
-
-	void CreateSequence()
+	private void Update()
 	{
-		_timelineAsset.DeleteTrack(_audioTrack);
-		_audioTrack = _timelineAsset.CreateTrack<AudioTrack>(null, "Audio Track");
-		_playableDirector.SetGenericBinding(_audioTrack, _audioSource);
-		
-		double start = 0;
-		foreach (var audioSequence in audioSequences)
-		{
-			AudioClip audioClip = audioSequence.GetRandomObject<AudioClip>();
-			TimelineClip clip = _audioTrack.CreateClip(audioClip);
-			clip.start = start;
-			start = clip.end;
+		double time = AudioSettings.dspTime;
+		if (time + 1.0F > nextEventTime) {
+			IncrementCurrentPlayingInstance();
+			_audioSources[currentPlayingInstance].clip = GetNextAudioAndIncrementSequence();
+			_audioSources[currentPlayingInstance].PlayScheduled(nextEventTime);
+			nextEventTime += _audioSources[currentPlayingInstance].clip.length;
 		}
+	}
+	
+	private void IncrementCurrentSequence()
+	{
+		currentSequenceIndex++;
+		if (currentSequenceIndex >= audioSequences.Length)
+			currentSequenceIndex = 0;
+	}
+
+	private void IncrementCurrentPlayingInstance()
+	{
+		currentPlayingInstance++;
+		if (currentPlayingInstance >= audioSourceInstances)
+			currentPlayingInstance = 0;
+	}
+
+	private AudioClip GetNextAudioAndIncrementSequence ()
+	{
+
+		AudioClip clip = audioSequences[currentSequenceIndex].GetObject<AudioClip>();
+		IncrementCurrentSequence();
+		return clip;
 	}
 }

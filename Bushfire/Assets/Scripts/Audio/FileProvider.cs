@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IFileProvider
+public abstract class FileProvider : MonoBehaviour
 {
-	T GetObject<T> () where T : Object;
+	public abstract T GetObject<T> () where T : Object;
 }

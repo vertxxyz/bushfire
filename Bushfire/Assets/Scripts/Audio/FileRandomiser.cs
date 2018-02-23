@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FileRandomiser : MonoBehaviour, FolderLoader.IFolderLoad, IFileProvider
+public class FileRandomiser : FileProvider, FolderLoader.IFolderLoad
 {
 
 	public T GetRandomObject<T>() where T : Object
@@ -22,7 +22,7 @@ public class FileRandomiser : MonoBehaviour, FolderLoader.IFolderLoad, IFileProv
 		this.objects = objects;
 	}
 
-	public T GetObject<T>() where T : Object
+	public override T GetObject<T>()
 	{
 		return GetRandomObject<T>();
 	}
