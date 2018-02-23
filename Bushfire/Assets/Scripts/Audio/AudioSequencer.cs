@@ -1,20 +1,21 @@
 ﻿using System;
+using System.Reflection;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioSequencer : MonoBehaviour
 {
 	private AudioSource _audioSource;
-	
+
 	//There are an array of variables to ensure audio preloading.
 	private const int audioSourceInstances = 2;
 	private int currentPlayingInstance;
 	private AudioSource[] _audioSources;
-	
+
 	private double nextEventTime;
-	
+
 	// Use this for initialization
-	private void Start ()
+	private void Start()
 	{
 		_audioSource = GetComponent<AudioSource>();
 		_audioSources = new AudioSource[audioSourceInstances];
@@ -34,11 +35,18 @@ public class AudioSequencer : MonoBehaviour
 	{
 		Type type = original.GetType();
 		Component copy = destination.AddComponent(type);
-		System.Reflection.FieldInfo[] fields = type.GetFields();
-		foreach (System.Reflection.FieldInfo field in fields)
-		{
+		FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
+		foreach (FieldInfo field in fields)
 			field.SetValue(copy, field.GetValue(original));
+
+		var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
+		foreach (var prop in props)
+		{
+			if (!prop.CanWrite || !prop.CanWrite || prop.Name == "name") continue;
+			if (prop.Name == "minVolume" || prop.Name == "maxVolume" || prop.Name == "rolloffFactor") continue;
+			prop.SetValue(copy, prop.GetValue(original, null), null);
 		}
+
 		return copy as T;
 	}
 
@@ -53,14 +61,15 @@ public class AudioSequencer : MonoBehaviour
 	private void Update()
 	{
 		double time = AudioSettings.dspTime;
-		if (time + 1.0F > nextEventTime) {
+		if (time + 1.0F > nextEventTime)
+		{
 			IncrementCurrentPlayingInstance();
 			_audioSources[currentPlayingInstance].clip = GetNextAudioAndIncrementSequence();
 			_audioSources[currentPlayingInstance].PlayScheduled(nextEventTime);
 			nextEventTime += _audioSources[currentPlayingInstance].clip.length;
 		}
 	}
-	
+
 	private void IncrementCurrentSequence()
 	{
 		currentSequenceIndex++;
@@ -75,9 +84,8 @@ public class AudioSequencer : MonoBehaviour
 			currentPlayingInstance = 0;
 	}
 
-	private AudioClip GetNextAudioAndIncrementSequence ()
+	private AudioClip GetNextAudioAndIncrementSequence()
 	{
-
 		AudioClip clip = audioSequences[currentSequenceIndex].GetObject<AudioClip>();
 		IncrementCurrentSequence();
 		return clip;
