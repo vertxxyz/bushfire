@@ -42,7 +42,7 @@ public class ClampFreeLookX : MonoBehaviour
 			float halfDeadZoneLook = deadZoneSizeLook / 2;
 			if (axisLook > 180)
 				axisLook = Mathf.Max(axisLook, 180 + halfDeadZoneLook);
-			if (Mathf.Abs(axisLook) < 180)
+			if (axisLook < 180)
 				axisLook = Mathf.Min(axisLook, 180 - halfDeadZoneLook);
 			pov.m_HorizontalAxis.Value = axisLook;
 		}
