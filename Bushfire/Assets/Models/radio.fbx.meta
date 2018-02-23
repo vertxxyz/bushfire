@@ -22,6 +22,7 @@ ModelImporter:
     100028: Radio Additions
     100030: Radio Base
     100032: Volume Knob
+    100034: Tray
     400000: 1
     400002: 2
     400004: 3
@@ -39,6 +40,7 @@ ModelImporter:
     400028: Radio Additions
     400030: Radio Base
     400032: Volume Knob
+    400034: Tray
     2100000: DarkGreyBlue
     2100002: White
     2100004: Silver
@@ -61,6 +63,7 @@ ModelImporter:
     2300024: Radio Additions
     2300026: Radio Base
     2300028: Volume Knob
+    2300030: Tray
     3300000: 1
     3300002: 2
     3300004: 3
@@ -76,6 +79,7 @@ ModelImporter:
     3300024: Radio Additions
     3300026: Radio Base
     3300028: Volume Knob
+    3300030: Tray
     4300000: Volume Knob
     4300002: Button
     4300004: 1
@@ -86,9 +90,45 @@ ModelImporter:
     4300014: 6
     4300016: Radio Base
     4300018: Radio Additions
+    4300020: Tray
     7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkGreyBlue
+    second: {fileID: 2100000, guid: 8181b348d5eab4b4f9307796b39999ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkerGreyBlue
+    second: {fileID: 2100000, guid: 847c1c1ff9432ce4c912ad64c4502ec4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkestGreyBlue
+    second: {fileID: 2100000, guid: e611e7e0b2208f541bdf17e6cf109620, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Silver
+    second: {fileID: 2100000, guid: 8517e9af21255594499b22134843ff9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White
+    second: {fileID: 2100000, guid: cf74f0bc20d2aae4eb8cb073efca4b1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: ae6695860bc531c488f9cef088cde626, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: YellowGrey
+    second: {fileID: 2100000, guid: bc035fba269aade4d8bdab7d88e05d70, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
