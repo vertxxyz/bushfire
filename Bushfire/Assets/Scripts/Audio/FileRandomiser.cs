@@ -7,7 +7,7 @@ public class FileRandomiser : MonoBehaviour, FolderLoader.IFolderLoad, IFileProv
 
 	public T GetRandomObject<T>() where T : Object
 	{
-		if (objects == null)
+		if (objects == null || objects.Length == 0)
 			return null;
 		Object o = objects[Random.Range(0, objects.Length)];
 		T t = o as T;
