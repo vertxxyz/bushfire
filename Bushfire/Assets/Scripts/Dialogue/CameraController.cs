@@ -3,6 +3,7 @@
 public class CameraController : MonoBehaviour
 {
 	public Vector2 cameraSpeed = Vector2.one;
+	public bool useAsCamera;
 	private Transform t;
 
 	private bool isLocked;
@@ -16,8 +17,11 @@ public class CameraController : MonoBehaviour
 
 	// Update is called once per frame
 	private void Update () {
-		t.Rotate(Vector3.up * Input.GetAxis("Mouse X") * cameraSpeed.x, Space.World);
-		t.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * cameraSpeed.y, Space.Self);
+		if (useAsCamera)
+		{
+			t.Rotate(Vector3.up * Input.GetAxis("Mouse X") * cameraSpeed.x, Space.World);
+			t.Rotate(Vector3.left * Input.GetAxis("Mouse Y") * cameraSpeed.y, Space.Self);
+		}
 
 		if (Input.GetKey(KeyCode.Escape))
 		{
