@@ -27,9 +27,12 @@ public class AudioAtRandomInterval : MonoBehaviour
 
 	IEnumerator PlayAudioAfterWait()
 	{
-		yield return new WaitForSeconds(Random.Range(intervalMin, intervalMax));
-		AudioClip audioClip = fileRandomiser.GetRandomObject<AudioClip>();
-		_audioSource.PlayOneShot(audioClip);
+		while (true)
+		{
+			yield return new WaitForSeconds(Random.Range(intervalMin, intervalMax));
+			AudioClip audioClip = fileRandomiser.GetRandomObject<AudioClip>();
+			_audioSource.PlayOneShot(audioClip);
+		}
 	}
 
 	private void OnDisable()
