@@ -13,6 +13,7 @@ public class AudioSequencer : MonoBehaviour
 	private AudioSource[] _audioSources;
 
 	private double nextEventTime;
+	private double prevEventTime;
 
 	// Use this for initialization
 	private void Start()
@@ -30,6 +31,7 @@ public class AudioSequencer : MonoBehaviour
 
 		_audioSources[currentPlayingInstance].clip = GetNextAudioAndIncrementSequence();
 		_audioSources[currentPlayingInstance].Play();
+		prevEventTime = AudioSettings.dspTime;
 		nextEventTime = AudioSettings.dspTime + _audioSources[currentPlayingInstance].clip.length;
 	}
 
@@ -63,11 +65,12 @@ public class AudioSequencer : MonoBehaviour
 	private void Update()
 	{
 		double time = AudioSettings.dspTime;
-		if (time + 1.0F > nextEventTime)
+		if (time > prevEventTime)
 		{
 			IncrementCurrentPlayingInstance();
 			_audioSources[currentPlayingInstance].clip = GetNextAudioAndIncrementSequence();
 			_audioSources[currentPlayingInstance].PlayScheduled(nextEventTime);
+			prevEventTime = nextEventTime;
 			nextEventTime += _audioSources[currentPlayingInstance].clip.length;
 		}
 	}
