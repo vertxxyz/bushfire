@@ -16,6 +16,7 @@ public class AudioSequencer : MonoBehaviour
 	private double prevEventTime;
 
 	private float lastVolume = -1;
+	[Range(0,1)]
 	public float volume = 1;
 
 	// Use this for initialization
