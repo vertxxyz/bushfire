@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class RadioButtonManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class RadioButtonManager : MonoBehaviour
 	[Header("Automatically adds Animation to children"), ReadOnly]
 	public Transform[] children;
 	private Animation[] _animations;
+
+	public UnityEvent[] events;
 
 	private void Reset()
 	{
@@ -50,6 +53,8 @@ public class RadioButtonManager : MonoBehaviour
 			{
 				if (_animations[i].clip != pressIn)
 				{
+					if(events.Length < i)
+					events[i].Invoke();
 					_animations[i].clip = pressIn;
 					_animations[i].Play();
 				}
@@ -62,7 +67,7 @@ public class RadioButtonManager : MonoBehaviour
 					_animations[i].Play();
 				}
 			}
-
+			
 		}
 	}
 }

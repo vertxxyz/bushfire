@@ -20,7 +20,7 @@ public class AudioSequencer : MonoBehaviour
 	public float volume = 1;
 
 	// Use this for initialization
-	private void Start()
+	private void OnEnable()
 	{
 		_audioSource = GetComponent<AudioSource>();
 		_audioSources = new AudioSource[audioSourceInstances];
@@ -37,6 +37,14 @@ public class AudioSequencer : MonoBehaviour
 		_audioSources[currentPlayingInstance].Play();
 		prevEventTime = AudioSettings.dspTime;
 		nextEventTime = AudioSettings.dspTime + _audioSources[currentPlayingInstance].clip.length;
+	}
+
+	private void OnDisable()
+	{
+		foreach (var source in _audioSources)
+		{
+			source.Stop();
+		}
 	}
 
 	private static T CopyComponent<T>(T original, GameObject destination) where T : Component
