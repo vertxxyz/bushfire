@@ -11,6 +11,7 @@ public class RadioButtonManager : MonoBehaviour
 	private Animation[] _animations;
 
 	public UnityEvent[] events;
+	public UnityEvent anyEvent;
 
 	private void Reset()
 	{
@@ -55,6 +56,7 @@ public class RadioButtonManager : MonoBehaviour
 				{
 					if(events.Length < i)
 					events[i].Invoke();
+					anyEvent.Invoke();
 					_animations[i].clip = pressIn;
 					_animations[i].Play();
 				}

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4348619107648266}
   - component: {fileID: 114423353192897074}
+  - component: {fileID: 114711377012557308}
   m_Layer: 0
   m_Name: Right 100 90deg
   m_TagString: Untagged
@@ -134,6 +135,23 @@ MonoBehaviour:
   handleType: 0
   leftHandleLocalPosition: {x: 0, y: 0, z: 33.33333}
   rightHandleLocalPosition: {x: -0, y: -0, z: -33.33333}
+--- !u!114 &114711377012557308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1221212125713114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec65dc317d80554fb531464d8862222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve: {fileID: 114423353192897074}
+  angle: 90
+  curveLength: 0
+  t: {fileID: 0}
+  intendedSpeedStart: 40
+  intendedSpeedEnd: 80
 --- !u!114 &114873274923947106
 MonoBehaviour:
   m_ObjectHideFlags: 1

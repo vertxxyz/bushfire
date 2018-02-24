@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4300287547280302}
   - component: {fileID: 114730195256176044}
+  - component: {fileID: 114378543554685652}
   m_Layer: 0
   m_Name: Straight 50
   m_TagString: Untagged
@@ -130,6 +131,23 @@ MonoBehaviour:
   handleType: 0
   leftHandleLocalPosition: {x: 0, y: 0, z: 16.66667}
   rightHandleLocalPosition: {x: -0, y: -0, z: -16.66667}
+--- !u!114 &114378543554685652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1177462010976572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec65dc317d80554fb531464d8862222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve: {fileID: 114730195256176044}
+  angle: 0
+  curveLength: 50.000053
+  t: {fileID: 0}
+  intendedSpeedStart: 100
+  intendedSpeedEnd: 100
 --- !u!114 &114730195256176044
 MonoBehaviour:
   m_ObjectHideFlags: 1
