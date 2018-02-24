@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 20288030}
   - component: {fileID: 20288032}
   - component: {fileID: 20288034}
+  - component: {fileID: 20288035}
   m_Layer: 0
   m_Name: feet
   m_TagString: Untagged
@@ -233,7 +234,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.58
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -315,6 +316,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   constrainTo: {fileID: 661985086}
   direction: {x: 0, y: -1.5, z: 0}
+--- !u!95 &20288035
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 20288028}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &29471254
 GameObject:
   m_ObjectHideFlags: 3
@@ -1261,7 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfa190875ab9494cae9f08afed6d842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 1
+  volume: 0
   audioSequences:
   - {fileID: 1665128569}
 --- !u!95 &434962059
@@ -1436,21 +1454,21 @@ PlayableDirector:
     value: {fileID: 1887488869}
   - key: {fileID: 0}
     value: {fileID: 1404384134}
-  - key: {fileID: 114654719716050722, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 434962055}
   - key: {fileID: 114014222555390482, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
     value: {fileID: 434962055}
-  - key: {fileID: 114327731539089482, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 866826341}
   - key: {fileID: 114122120205228064, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
     value: {fileID: 866826341}
-  - key: {fileID: 114400075101452476, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1887488867}
   - key: {fileID: 114282970058657324, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
     value: {fileID: 1887488867}
   - key: {fileID: 0}
     value: {fileID: 1404384134}
-  - key: {fileID: 114888909843155126, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1404384132}
   - key: {fileID: 114092862299750650, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
     value: {fileID: 1404384132}
@@ -1476,6 +1494,10 @@ PlayableDirector:
     value: {fileID: 834306359}
   - key: {fileID: 114648173779131416, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
     value: {fileID: 975554837}
+  - key: {fileID: 114018675636849546, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
+    value: {fileID: 20288028}
+  - key: {fileID: 114253930155987486, guid: 7ba3c4f084767a44d8adf1381a42cf45, type: 2}
+    value: {fileID: 1054610123}
   m_ExposedReferences:
     m_References:
     - e1cc131dbef0db94090f94c0ac1fc19b: {fileID: 298720674}
@@ -1667,9 +1689,7 @@ MonoBehaviour:
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
-  m_AfterStackBundles:
-  - assemblyQualifiedName: LensRain, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+  m_AfterStackBundles: []
 --- !u!81 &661985084
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2153,7 +2173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfa190875ab9494cae9f08afed6d842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 1
+  volume: 0
   audioSequences:
   - {fileID: 976040480}
 --- !u!4 &866826343
@@ -2887,6 +2907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1054610124}
   - component: {fileID: 1054610125}
+  - component: {fileID: 1054610126}
   m_Layer: 0
   m_Name: HouseAtmos
   m_TagString: Untagged
@@ -2987,6 +3008,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!95 &1054610126
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1054610123}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1072011573
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,7 +3797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfa190875ab9494cae9f08afed6d842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 1
+  volume: 0
   audioSequences:
   - {fileID: 1072011575}
 --- !u!95 &1404384136
@@ -4571,7 +4609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfa190875ab9494cae9f08afed6d842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 1
+  volume: 0
   audioSequences:
   - {fileID: 354333419}
 --- !u!95 &1887488871
