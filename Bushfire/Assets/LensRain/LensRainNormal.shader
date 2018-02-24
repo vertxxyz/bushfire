@@ -41,7 +41,7 @@
 
 			fixed3 frag (v2f i) : SV_Target
 			{
-				float tex = tex2D(_MainTex, i.uv).x; // Sample texture
+				//float tex = tex2D(_MainTex, i.uv).x; // Sample texture
                 float n = tex2D(_MainTex, float2(i.uv.x, i.uv.y + 1.0 / _ScreenParams.y)).x; // Sample with north offset
                 float s = tex2D(_MainTex, float2(i.uv.x, i.uv.y - 1.0 / _ScreenParams.y)).x; // Sample with south offset
                 float e = tex2D(_MainTex, float2(i.uv.x + 1.0 / _ScreenParams.x, i.uv.y)).x; // Sample with east offset

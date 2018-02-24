@@ -14,7 +14,7 @@ public class LensRainTexture : MonoBehaviour
 	private void Start()
 	{
 		_camera = GetComponent<Camera>();
-		_renderTexture = new RenderTexture((int)lensRainSize.x, (int)lensRainSize.y, 32, RenderTextureFormat.ARGBHalf);
+		_renderTexture = new RenderTexture((int)lensRainSize.x, (int)lensRainSize.y, 32, RenderTextureFormat.ARGBHalf, RenderTextureReadWrite.Linear);
 		_camera.targetTexture = _renderTexture;
 		rainMaterial.SetTexture("_RainNormal", _renderTexture);
 	}

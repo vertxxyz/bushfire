@@ -23,4 +23,20 @@ public class ToggleAndPlayClip : MonoBehaviour
 		_animation.clip = _animation.clip == animationClipA ? animationClipB : animationClipA;
 		_animation.Play();
 	}
+
+	public void PlayAIfB()
+	{
+		if(_animation.clip != animationClipB)
+			return;
+		_animation.clip = animationClipA;
+		_animation.Play();
+	}
+	
+	public void PlayBIfA()
+	{
+		if(_animation.clip != animationClipA)
+			return;
+		_animation.clip = animationClipB;
+		_animation.Play();
+	}
 }

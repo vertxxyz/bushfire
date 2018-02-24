@@ -2,7 +2,8 @@
 {
 	Properties
 	{
-		_RainNormal ("Normal", 2D) = "grey" {}
+		_RainNormal ("Normal", 2D) = "black" {}
+		_Strength ("Strength", Float) = 1
 	}
 	SubShader
 	{
@@ -40,7 +41,7 @@
 			float4 _GrabTexture_ST;
 			sampler2D _RainNormal;
 			float4 _RainNormal_ST;
-			float _Strength = 1000;
+			float _Strength;
 			
 			v2f vert (appdata v)
 			{
@@ -56,7 +57,8 @@
 			{
 			
 			    float3 normal = tex2D (_RainNormal, i.uv).rgb;
-                float2 uv = float2(normal.x * 1 + i.grabPos.x, normal.z * 1 + i.grabPos.y);
+                float2 uv = float2(normal.x * _ScreenParams.z * _Strength + i.grabPos.x,
+                    normal.y * _ScreenParams.z * _Strength + i.grabPos.y);
 				// sample the texture
 				fixed4 col = tex2Dproj(_GrabTexture, float4(uv.x, uv.y, i.grabPos.z, i.grabPos.w));
 				// apply fog
