@@ -15,6 +15,9 @@ public class AudioSequencer : MonoBehaviour
 	private double nextEventTime;
 	private double prevEventTime;
 
+	private float lastVolume = -1;
+	public float volume = 1;
+
 	// Use this for initialization
 	private void Start()
 	{
@@ -64,6 +67,15 @@ public class AudioSequencer : MonoBehaviour
 
 	private void Update()
 	{
+		if (volume != lastVolume)
+		{
+			foreach (var source in _audioSources)
+			{
+				source.volume = volume;
+			}
+			volume = lastVolume;
+		}
+		
 		double time = AudioSettings.dspTime;
 		if (time > prevEventTime)
 		{
