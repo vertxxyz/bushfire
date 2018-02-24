@@ -17,6 +17,20 @@ public class Interaction : MonoBehaviour
 	public CursorLockMode lockModeCurrent;
 
 	public CursorLockMode lockModeIntended = CursorLockMode.Locked;
+
+	
+	
+	public void SetLocked()
+	{
+		lockModeIntended = CursorLockMode.Locked;
+		SetLockedModeToIntended();
+	}
+
+	public void SetToCursor()
+	{
+		lockModeIntended = CursorLockMode.Confined;
+		SetLockedModeToIntended();
+	}
 	
 	
 	private void Start()
