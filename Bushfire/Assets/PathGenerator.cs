@@ -13,6 +13,7 @@ public class PathGenerator : MonoBehaviour
 	private Transform t;
 
 	public Transform carTransform;
+	public SteeringWheel steeringWheel;
 	
 	private void Start()
 	{
@@ -137,6 +138,7 @@ public class PathGenerator : MonoBehaviour
 			curve.t.position += fromToPos;
 		}
 
+		steeringWheel.UpdateAngle(curves[currentCurve].angle);
 	}
 
 	private void CyclePathIfNeeded()
